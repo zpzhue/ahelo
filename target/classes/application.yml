@@ -1,0 +1,80 @@
+
+server:
+  # 应用服务 WEB 访问端口
+  port: 9527
+
+spring:
+  application:
+    name: ahelo
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    name: defaultDataSource
+    #    url: jdbc:mysql://xxx:3306/irisz_backend?useUnicode=true&useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf-8&allowPublicKeyRetrieval=true&zeroDateTimeBehavior=convertToNull
+    url: mpw:zPB0yN7v7qxo3BRsWAX51xjkvO3+NT2b82nbWdAP08f1GCCH0deQntUP5He+8Udr4pi+XkYVcng+7jDUwWxnOWqEU38v0KDCjS4dLkRHnORJdvGwtvROWeQVP9TObnamxmEJ36sxZgUSHf9iR8xANm6WtmOVeGQVHfqgOdEENtmFvshhdjrYMk9CR8QKRiDDrY6UaCZCLZtpJU4HopM67x9BH1JQrIe1SJrhZ60FiwU=
+    username: mpw:r506VQNNOGHCKw5s+mRWLg==
+    password: mpw:r506VQNNOGHCKw5s+mRWLg==
+    druid:
+      max-active: 5
+      initial-size: 2
+      min-idle: 2
+      test-while-idle: true
+      web-stat-filter:
+        enabled: true
+      stat-view-servlet:
+        enabled: true
+        login-username: root
+        login-password: root
+  gson:
+    date-format: yyyy-MM-dd hh-mm-ss
+
+mybatis-plus:
+  # mapper xml映射目录
+  mapper-locations: classpath*:/mapper/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-field: is_delete
+
+
+############## Sa-Token 配置 (文档: https://sa-token.cc) ##############
+sa-token:
+  # token名称 (同时也是cookie名称)
+  token-name: Bearer
+  # token有效期，单位s 默认30天, -1代表永不过期
+  timeout: 604800
+  # token临时有效期 (指定时间内无操作就视为token过期) 单位: 秒
+  activity-timeout: -1
+  # 是否允许同一账号并发登录 (为true时允许一起登录, 为false时新登录挤掉旧登录)
+  is-concurrent: false
+  # 在多人登录同一账号时，是否共用一个token (为true时所有登录共用一个token, 为false时每次登录新建一个token)
+  is-share: false
+  # token风格
+  token-style: uuid
+  # 是否输出操作日志
+  is-log: true
+
+
+
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn
+    swagger-model-name: 实体类列表
+
+
+# Actuator Web 访问端口
+management:
+  server:
+    port: 9527
+  endpoints:
+    jmx:
+      exposure:
+        include: '*'
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
